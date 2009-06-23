@@ -13,6 +13,7 @@ class NewTable
 
   def execute
     query = @parameters['query']
+    renaming_param = @parameters['renaming_param']
 
     if query == nil
       return EMPTY_QUERY_ERROR_MESSAGE
@@ -24,7 +25,7 @@ class NewTable
       return "<p>query <pre><code> " + query + " </code></pre> does not return any result</p>"
     end
 
-    return HtmlTableBuilder.build_table_from(mql_result, @project)
+    return HtmlTableBuilder.build_table_from(mql_result, @project, renaming_param)
   end
 
   def can_be_cached?

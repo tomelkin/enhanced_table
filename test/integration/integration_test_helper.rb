@@ -1,5 +1,5 @@
 require 'test/unit'
-require File.join(File.dirname(__FILE__), '..', '..', 'init.rb')
+require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'init.rb')
 require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'new_table')
 require File.join(File.dirname(__FILE__), 'rest_loader')
 

@@ -6,7 +6,8 @@ class NewTableTest < Test::Unit::TestCase
 
   FIXTURE = 'sample'
   QUERY = "some query"
-  PARAMS = {'query' => "#{QUERY}"}
+  RENAMING_PARAM = "something as something else"
+  PARAMS = {'query' => "#{QUERY}", 'renaming_param' => "#{RENAMING_PARAM}"}
   SOME_HTML_TABLE = "<table><tr><th> some header </th></tr> <tr><td> some row </td></tr>"
 
 
@@ -21,7 +22,7 @@ class NewTableTest < Test::Unit::TestCase
                      {"Name" => "Row 2", "Something" => "Something Two"}]
 
     @project.expects(:execute_mql).with(QUERY).returns(query_results).once
-    HtmlTableBuilder.expects(:build_table_from).with(query_results, @project).returns(SOME_HTML_TABLE).once
+    HtmlTableBuilder.expects(:build_table_from).with(query_results, @project, RENAMING_PARAM).returns(SOME_HTML_TABLE).once
 
     result = @new_table.execute
 
@@ -34,7 +35,7 @@ class NewTableTest < Test::Unit::TestCase
     query_results = []
 
     @project.expects(:execute_mql).with(QUERY).returns(query_results).once
-    HtmlTableBuilder.expects(:build_table_from).with(query_results).never
+    HtmlTableBuilder.expects(:build_table_from).never
 
     expected = "<p>query <pre><code> " + QUERY + " </code></pre> does not return any result</p>"
     result = @new_table.execute
