@@ -13,10 +13,13 @@ class NewTable
 
   def execute
     query = @parameters['query']
-    
-    return EMPTY_QUERY_ERROR_MESSAGE if query == nil
+
+    if query == nil
+      return EMPTY_QUERY_ERROR_MESSAGE
+    end
 
     mql_result = @project.execute_mql(query)
+
     if mql_result.empty?
       return "<p>query <pre><code> " + query + " </code></pre> does not return any result</p>"
     end
