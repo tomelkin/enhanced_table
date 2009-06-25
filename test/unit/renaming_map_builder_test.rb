@@ -1,5 +1,5 @@
-require "test/unit"
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'renaming_map_builder')
+require "unit_test_helper"
+require LibDirectory.file('renaming_map_builder')
 
 class RenamingMapBuilderTest < Test::Unit::TestCase
   def test_should_parse_single_renaming_param_into_a_map

@@ -1,6 +1,6 @@
 require 'test/unit'
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'init.rb')
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'new_table')
+require LibDirectory.file('init.rb')
+require LibDirectory.file('enhanced_table')
 require File.join(File.dirname(__FILE__), 'rest_loader')
 
 class Test::Unit::TestCase

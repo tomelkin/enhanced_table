@@ -7,8 +7,8 @@ class NewTableIntegrationTest < Test::Unit::TestCase
   PROJECT_RESOURCE = 'http://username:password@your.mingle.server:port/lightweight_projects/your_project_identifier.xml'
 
   def test_macro_contents
-    new_table = NewTable.new(nil, project(PROJECT_RESOURCE), nil)
-    result = new_table.execute
+    enhanced_table = EnhancedTable.new(nil, project(PROJECT_RESOURCE), nil)
+    result = enhanced_table.execute
     assert result
   end
 

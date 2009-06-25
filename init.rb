@@ -6,5 +6,5 @@ rescue LoadError
 end
 
 if defined?(RAILS_ENV) && RAILS_ENV == 'production' && defined?(MinglePlugins)
-  MinglePlugins::Macros.register(NewTable, 'new_table')
+  MinglePlugins::Macros.register(EnhancedTable, 'enhanced_table')
 end 

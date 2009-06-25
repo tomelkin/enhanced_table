@@ -1,9 +1,7 @@
-require 'test/unit'
-require 'rubygems'
-require 'mocha'
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'result_formatter')
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'mql_date_formatter')
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'number_formatter')
+require "unit_test_helper"
+require LibDirectory.file('result_formatter')
+require LibDirectory.file('mql_date_formatter')
+require LibDirectory.file('number_formatter')
 
 class ResultFormatterTest < Test::Unit::TestCase
 

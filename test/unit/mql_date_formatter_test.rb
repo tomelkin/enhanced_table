@@ -1,6 +1,5 @@
-require 'test/unit'
-require 'rubygems'
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'mql_date_formatter')
+require File.join(File.dirname(__FILE__), 'unit_test_helper')
+require LibDirectory.file('mql_date_formatter')
 
 
 class MqlDateFormatterTest < Test::Unit::TestCase

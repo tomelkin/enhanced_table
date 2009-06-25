@@ -7,7 +7,7 @@ class RenamingMapBuilder
 
     renaming_map = {}
     renaming_param.strip.split(',').each do |renaming_pair|
-      renaming_map.merge!(get_mapping_from_pair renaming_pair)
+      renaming_map.merge!(get_mapping_from_pair(renaming_pair))
     end
     
     return renaming_map

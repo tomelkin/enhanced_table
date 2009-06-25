@@ -1,6 +1,5 @@
-require 'test/unit'
-require 'rubygems'
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'number_formatter')
+require File.join(File.dirname(__FILE__), 'unit_test_helper')
+require LibDirectory.file('number_formatter')
 
 
 class NumberFormatterTest < Test::Unit::TestCase
