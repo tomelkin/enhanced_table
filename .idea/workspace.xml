@@ -18,19 +18,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new_column_calculator_test.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/new_column_calculator_test.rb">
+      <file leaf-file-name="renaming_map_builder_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/renaming_map_builder_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="6" selection-start="5814" selection-end="5814" vertical-scroll-proportion="0.0">
+            <state line="15" column="3" selection-start="656" selection-end="702" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_column_calculator.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/new_column_calculator.rb">
+      <file leaf-file-name="column_name_parser_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/column_name_parser_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="32" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="column_renamer_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/column_renamer_test.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -39,70 +48,61 @@
       <file leaf-file-name="enhanced_table_test.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/unit/enhanced_table_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="14" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0">
+            <state line="50" column="29" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enhanced_table.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="enhanced_table.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/enhanced_table.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="19" selection-start="148" selection-end="148" vertical-scroll-proportion="0.06728972">
+            <state line="17" column="16" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/init.rb">
+      <file leaf-file-name="result_manipulator.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/result_manipulator.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="63" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+            <state line="6" column="18" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deploy.rake" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tasks/deploy.rake">
+      <file leaf-file-name="new_column_calculator_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/new_column_calculator_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="84" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+            <state line="102" column="36" selection-start="4248" selection-end="4248" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="integration_test_helper.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/integration/integration_test_helper.rb">
+      <file leaf-file-name="new_column_calculator.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/new_column_calculator.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="27" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
+            <state line="25" column="0" selection-start="761" selection-end="761" vertical-scroll-proportion="0.4477612">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_table_integration_test.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/integration/new_table_integration_test.rb">
+      <file leaf-file-name="result_manipulator_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/result_manipulator_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="13" selection-start="804" selection-end="804" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="unit_test_helper.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/unit_test_helper.rb">
+      <file leaf-file-name="result_formatter_test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/unit/result_formatter_test.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fixture_loader.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/unit/fixture_loader.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="8" selection-start="1861" selection-end="1861" vertical-scroll-proportion="0.0">
+            <state line="20" column="53" selection-start="931" selection-end="944" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -129,27 +129,27 @@
     <subPane>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -163,11 +163,11 @@
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -177,29 +177,15 @@
       </PATH>
       <PATH>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
+          <option name="myItemId" value="enhanced_table" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="tasks" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="new_table" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="lib" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -228,11 +214,11 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.searchVisible" value="true" />
     <property name="options.lastSelected" value="ruby.project.structure" />
-    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
+    <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
   </component>
   <component name="RunManager" selected="Rake.test:units">
-    <tempConfiguration default="false" name="test_should_handle_different_keyword_capitalizations" type="TestUnitRunConfigurationType" factoryName="Ruby test">
+    <tempConfiguration default="false" name="NewColumnCalculatorTest" type="TestUnitRunConfigurationType" factoryName="Ruby test">
       <module name="new_table" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$PROJECT_DIR$/test/unit" />
@@ -242,10 +228,10 @@
       <envs />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$PROJECT_DIR$/test/unit/new_column_calculator_test.rb" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="NewColumnCalculatorTest" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="test_should_handle_different_keyword_capitalizations" />
-      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_METHOD" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
       <RunnerSettings RunnerId="RubyRunner" />
       <ConfigurationWrapper RunnerId="RubyRunner" />
@@ -350,7 +336,7 @@
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Rake.test:units" />
-      <item index="1" class="java.lang.String" itemvalue="Test::Unit.test_should_handle_different_keyword_capitalizations" />
+      <item index="1" class="java.lang.String" itemvalue="Test::Unit.NewColumnCalculatorTest" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -374,14 +360,14 @@
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25581396" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25458997" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25485438" sideWeight="0.7356181" order="0" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25485438" sideWeight="0.7368421" order="0" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39902082" sideWeight="0.5" order="3" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5" order="9" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
@@ -423,58 +409,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/row_parser.rb">
+    <entry file="file://$PROJECT_DIR$/test/unit/lib_directory.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/mql_date_formatter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="34" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/result_formatter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="50" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/unit/number_formatter_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="35" selection-start="830" selection-end="830" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/number_formatter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="11" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Users/administrator/.gem/ruby/1.8/gems/activesupport-2.3.2/lib/active_support/dependencies.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="3873" selection-end="3873" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/new_column_calculator_test.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="6" selection-start="5814" selection-end="5814" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/new_column_calculator.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="32" selection-start="971" selection-end="971" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -486,51 +430,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/init.rb">
+    <entry file="file://$PROJECT_DIR$/test/unit/row_parser_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="63" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tasks/deploy.rake">
+    <entry file="file://$PROJECT_DIR$/test/unit/mql_date_formatter_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="84" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/integration/integration_test_helper.rb">
+    <entry file="file://$PROJECT_DIR$/test/unit/html_table_builder_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="27" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/integration/new_table_integration_test.rb">
+    <entry file="file://$PROJECT_DIR$/test/unit/result_manipulator_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="804" selection-end="804" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/unit_test_helper.rb">
+    <entry file="file://$PROJECT_DIR$/test/unit/result_formatter_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+        <state line="20" column="53" selection-start="931" selection-end="944" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/renaming_map_builder_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="3" selection-start="656" selection-end="702" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/column_name_parser_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/column_renamer_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/unit/enhanced_table_test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="14" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0">
+        <state line="50" column="29" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/enhanced_table.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="19" selection-start="148" selection-end="148" vertical-scroll-proportion="0.06728972">
+        <state line="17" column="16" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/result_manipulator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="18" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/new_column_calculator_test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="36" selection-start="4248" selection-end="4248" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/new_column_calculator.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="761" selection-end="761" vertical-scroll-proportion="0.4477612">
           <folding />
         </state>
       </provider>

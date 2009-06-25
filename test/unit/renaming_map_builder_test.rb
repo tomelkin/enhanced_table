@@ -16,6 +16,13 @@ class RenamingMapBuilderTest < Test::Unit::TestCase
     assert_equal expected_map, renaming_map
   end
 
+  def test_should_treat_keywords_as_case_insensitive
+    renaming_param = "name AS Foobar, Date aS Start Date"
+    renaming_map = RenamingMapBuilder.build_renaming_map_from(renaming_param)
+    expected_map = {'name' => 'Foobar', 'Date' => 'Start Date'}
+    assert_equal expected_map, renaming_map
+  end
+
   def test_should_raise_exception_if_comma_is_missing
     renaming_param = "name as Foobar Date as Start Date"
     exception = nil

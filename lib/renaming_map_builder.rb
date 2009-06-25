@@ -16,7 +16,7 @@ class RenamingMapBuilder
   private
 
   def self.get_mapping_from_pair(renaming_pair)
-    renaming_words = renaming_pair.split('as')
+    renaming_words = renaming_pair.split(/\bas\b/i)
       if (renaming_words.size != 2)
         raise ArgumentError.new(INVALID_RENAMING_PARAM_MESSAGE)
       end

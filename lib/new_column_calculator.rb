@@ -23,7 +23,7 @@ class NewColumnCalculator
     equation = get_equation(calculate_param)
     calculated_column_name = get_calculated_column_name(calculate_param)
     identifiers = get_identifiers(equation)
-
+  
     results.each do |row|
       expression = equation.dup
       identifiers.each do |identifier|
