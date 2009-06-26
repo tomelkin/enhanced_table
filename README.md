@@ -1,4 +1,4 @@
-# Enhanced table Mingle macro
+# Enhanced Mingle table macro
 
 A clone of the existing Mingle table macro, that has been extended to allow renaming of outputted columns and new columns to be calculated as a product of one or more existing columns.
 
