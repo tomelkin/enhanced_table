@@ -1,4 +1,5 @@
 require File.join(File.dirname(__FILE__), 'mql_date_formatter')
+require File.join(File.dirname(__FILE__), 'number_formatter')
 
 class ResultFormatter
 

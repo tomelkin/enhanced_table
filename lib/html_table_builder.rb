@@ -1,19 +1,17 @@
+require File.join(File.dirname(__FILE__), 'column_name_parser')
+require File.join(File.dirname(__FILE__), 'result_formatter')
+require File.join(File.dirname(__FILE__), 'row_parser')
+
 class HtmlTableBuilder
-  def self.build_table_from(mql_result, mingle_project)
-    #exception = nil
-    #begin
-    #  renaming_map = RenamingMapBuilder.build_renaming_map_from(renaming_param)
-    #rescue ArgumentError => exception
-    #  return "<p>" + exception.message + "</p>"
-    #end
+  def self.build_html_table_from(table, mingle_project)
+    records = table.records
+    html_table = "<table>"
 
-    table = "<table>"
+    html_table << ColumnNameParser.build_html_table_header_from(table.column_names)
+    formatted_result = ResultFormatter.format_result(records)
+    html_table << RowParser.parse_rows_from(formatted_result, mingle_project)
 
-    table << ColumnNameParser.parse_table_header_from(mql_result)
-    formatted_result = ResultFormatter.format_result(mql_result)
-    table << RowParser.parse_rows_from(formatted_result, mingle_project)
-
-    table << "</table>"
-    return table
+    html_table << "</table>"
+    return html_table
   end
 end

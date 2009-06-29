@@ -13,6 +13,8 @@ class HtmlTableBuilderTest < Test::Unit::TestCase
                    {"Name" => "Row 2", "Something" => "Something Two"}]
     @project = mock
     @renaming_param = "Something as Something renamed"
+    @table = Table.new(@mql_results)
+
 
   end
 
@@ -20,14 +22,15 @@ class HtmlTableBuilderTest < Test::Unit::TestCase
     html_header = "<header>"
     html_rows = "<rows>"
     renaming_map = {}
+    records = @table.records
 
-    ColumnNameParser.expects(:parse_table_header_from).with(@mql_results).returns(html_header).once
-    ResultFormatter.expects(:format_result).with(@mql_results).returns(@mql_results).once
-    RowParser.expects(:parse_rows_from).with(@mql_results, @project).returns(html_rows).once
+    ColumnNameParser.expects(:build_html_table_header_from).with(@table.column_names).returns(html_header).once
+    ResultFormatter.expects(:format_result).with(records).returns(@mql_results).once
+    RowParser.expects(:parse_rows_from).with(records, @project).returns(html_rows).once
 
     expected_html = "<table>" + html_header + html_rows + "</table>"
 
-    html = HtmlTableBuilder.build_table_from(@mql_results, @project)
+    html = HtmlTableBuilder.build_html_table_from(@table, @project)
 
     assert_equal expected_html, html
   end

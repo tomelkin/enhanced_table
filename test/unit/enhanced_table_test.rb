@@ -1,89 +1,82 @@
 require File.join(File.dirname(__FILE__), 'unit_test_helper')
 require LibDirectory.file('html_table_builder')
-require LibDirectory.file('result_manipulator')
-
 
 class EnhancedTableTest < Test::Unit::TestCase
 
-  FIXTURE = 'sample'
   QUERY = "some query"
-  RENAMING_PARAM = "something as something else"
-  CALCULATION_PARAM = "Column A + Column B as Column C"
-  PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}"}
-  SOME_HTML_TABLE = "<table><tr><th> some header </th></tr> <tr><td> some row </td></tr>"
+  MQL_QUERY_RESULTS = [{"Header A" => "10", "Header B" => "30"},
+                       {"Header A" => "100", "Header B" => "13"}]
+  RENAMING_PARAM = "Header A as Header A Renamed, 'Header B' as 'Header B Renamed'"
+  CALCULATION_PARAM = "Header A + Header B as Header C"
+  MULTIPLE_CALCULATION_PARAM = "Header A + Header B as Header C, Header A * Header B + 2 as Header D"
 
+
+  PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}"}
 
   def setup
-    @project = project(FIXTURE)
+    @project = mock()
+    @project.expects(:execute_mql).with(QUERY).returns(MQL_QUERY_RESULTS)
   end
 
-  def test_should_execute_mql_query_process_results_and_produce_html
-    @enhanced_table = EnhancedTable.new(PARAMS, @project, nil)
+  def test_should_execute_query_and_produce_html_table
+    parameters = {"query" => QUERY}
 
-    query_results = [{}]
-    manipulated_results = [{}]
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
 
-    @project.expects(:execute_mql).with(QUERY).returns(query_results)
-    ResultManipulator.expects(:process).with(query_results, RENAMING_PARAM, CALCULATION_PARAM).returns(manipulated_results)
-    HtmlTableBuilder.expects(:build_table_from).with(manipulated_results, @project).returns(SOME_HTML_TABLE)
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th></tr>" +
+            "<tr><td>10</td><td>30</td></tr>" +
+            "<tr><td>100</td><td>13</td></tr>" +
+            "</table>"
 
-    result = @enhanced_table.execute
-
-    assert_equal SOME_HTML_TABLE, result
+    assert_equal(expected_html, html)
   end
 
-  def test_should_display_query_and_empty_result_warning_when_query_does_not_give_any_result
-    @enhanced_table = EnhancedTable.new(PARAMS, @project, nil)
+  def test_should_rename_table_columns_based_on_rename_parameter
+    parameters = {'query' => QUERY, 'rename' => RENAMING_PARAM}
 
-    query_results = []
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
 
-    @project.expects(:execute_mql).with(QUERY).returns(query_results)
-    HtmlTableBuilder.expects(:build_table_from).never
+    expected_html = "<table>" +
+            "<tr><th>Header A Renamed</th><th>Header B Renamed</th></tr>" +
+            "<tr><td>10</td><td>30</td></tr>" +
+            "<tr><td>100</td><td>13</td></tr>" +
+            "</table>"
 
-    expected = "<p>query <pre><code> " + QUERY + " </code></pre> does not return any result</p>"
-    result = @enhanced_table.execute
-
-    assert_equal expected, result
+    assert_equal(expected_html, html)
   end
 
-  def test_should_not_execute_query_display_error_when_no_query_has_been_specified
-    empty_params = {}
-    @enhanced_table = EnhancedTable.new(empty_params, @project, nil)
+  def test_should_calculate_new_columns_based_on_calculate_parameter
+    parameters = {'query' => QUERY, 'calculate' => CALCULATION_PARAM}
 
-    @project.expects(:execute_mql).with(QUERY).never
-    HtmlTableBuilder.expects(:build_table_from).never
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
 
-    result = @enhanced_table.execute
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th><th>Header C</th></tr>" +
+            "<tr><td>10</td><td>30</td><td>40</td></tr>" +
+            "<tr><td>100</td><td>13</td><td>113</td></tr>" +
+            "</table>"
 
-    assert_equal EnhancedTable::EMPTY_QUERY_ERROR_MESSAGE, result
+    assert_equal(expected_html, html)
   end
 
-  def test_should_not_fail_when_no_calculate_param_specified
-    params = {'query' => QUERY}
-    results = "some_result"
+  def test_should_handle_multiple_rows_and_multiple_new_column_calculations
+    parameters = {'query' => QUERY, 'calculate' => MULTIPLE_CALCULATION_PARAM}
 
-    @enhanced_table = EnhancedTable.new(params, @project, nil)
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
 
-    @project.expects(:execute_mql).with(QUERY).returns(results)
-    ResultManipulator.expects(:process).with(results, nil, nil).returns(results)
-    HtmlTableBuilder.expects(:build_table_from).with(results, @project)
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th><th>Header C</th><th>Header D</th></tr>" +
+            "<tr><td>10</td><td>30</td><td>40</td><td>302</td></tr>" +
+            "<tr><td>100</td><td>13</td><td>113</td><td>1302</td></tr>" +
+            "</table>"
 
-    @enhanced_table.execute
+    assert_equal(expected_html, html)
   end
 
-  def test_should_display_error_if_exception_is_caught
-    query_results = ["Header" => "Row 1"]
-
-    @project.expects(:execute_mql).with(QUERY).returns(query_results)
-    @enhanced_table = EnhancedTable.new(PARAMS, @project, nil)
-
-    exception_error_message = "error message"
-    ResultManipulator.expects(:process).raises(ArgumentError, exception_error_message)
-
-    expected_html = "<p>#{exception_error_message}</p>"
-    html = @enhanced_table.execute
-
-    assert_equal expected_html, html
-  end
 
 end
