@@ -1,2 +1,3 @@
-deploy_me
+deploy_me.sh
 .idea/
+.gitignore
