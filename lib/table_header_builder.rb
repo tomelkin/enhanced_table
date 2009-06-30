@@ -1,4 +1,4 @@
-class ColumnNameParser
+class TableHeaderBuilder
   def self.build_html_table_header_from(column_names)
     column_string = "<tr>"
     column_names.each do |column|

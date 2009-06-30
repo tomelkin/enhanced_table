@@ -7,7 +7,8 @@ class TableTest < Test::Unit::TestCase
   def setup
     mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
                    {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
-    @table = Table.new(mql_results)
+    @project = mock()
+    @table = Table.new(mql_results, @project)
   end
 
   def test_should_give_back_array_of_arrays_representing_table_rows
@@ -21,9 +22,25 @@ class TableTest < Test::Unit::TestCase
       ResultFormatter.expects(:format_value).with(value).returns(value + " formatted")
     end
 
-    expected_rows = [["Row 1A formatted", "Row 1B formatted"],["Row 2A formatted", "Row 2B formatted"]]
+    expected_rows = [["Row 1A formatted", "Row 1B formatted"], ["Row 2A formatted", "Row 2B formatted"]]
     assert_equal expected_rows, @table.rows
   end
+
+  def test_should_format_date_value_based_on_project_date_format
+    date_as_string = "2008-01-01"
+    date = Date.parse(date_as_string)
+    mql_results = [{"Date Column" => date_as_string}]
+    
+    @table = Table.new(mql_results, @project)
+
+    ResultFormatter.expects(:format_value).with(date_as_string).returns(date)
+    @project.expects(:format_date_with_project_date_format).with(date).returns("01 Jan 2008")
+
+    expected_rows = [["01 Jan 2008"]]
+
+    assert_equal expected_rows, @table.rows
+  end
+
 end
 
 class TableRenameColumnsTest < Test::Unit::TestCase
@@ -31,7 +48,8 @@ class TableRenameColumnsTest < Test::Unit::TestCase
   def setup
     mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
                    {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
-    @table = Table.new(mql_results)
+    @project = mock()
+    @table = Table.new(mql_results, @project)
   end
 
   def test_should_rename_column_when_column_name_exist_in_renaming_map
@@ -63,7 +81,8 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
 
   def setup
     @mql_results = [{"Column A"=> "3", "Column B" => "2"}]
-    @table = Table.new(@mql_results)
+    @project = mock()
+    @table = Table.new(@mql_results, @project)
   end
 
   def test_should_add_columns_value_and_add_a_new_column
@@ -93,7 +112,7 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
 
   def test_should_treat_nil_values_as_zero_for_calculations
     @mql_results = [{"Column A" => 10, "Column B" => nil}]
-    @table = Table.new(@mql_results)
+    @table = Table.new(@mql_results, @project)
 
     calculation_details = CalculationDetails.new("Column C", "Column A + Column B")
     calculate_and_verify_new_column_added(calculation_details, "Column C", 10)
@@ -106,7 +125,7 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
 
   def test_handle_column_names_with_other_column_names_embedded_in_them
     @mql_results = [{'table' => 5, 'stable' => 7}]
-    @table = Table.new(@mql_results)
+    @table = Table.new(@mql_results, @project)
     calculation_details = CalculationDetails.new("answer", "table * stable")
     calculate_and_verify_new_column_added(calculation_details, "answer", 35)
   end
@@ -119,7 +138,7 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
     expected_results = [{"Column A" => 2, "Column B" => 1, "Column C" => 3},
                         {"Column A" => 4, "Column B" => 3, "Column C" => 7}]
 
-    @table = Table.new(@mql_results)
+    @table = Table.new(@mql_results, @project)
     @table.add_calculated_column(calculation_details)
 
     assert_equal expected_results, @table.records
@@ -141,7 +160,7 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
 
   def test_should_raise_exception_when_a_formula_uses_column_with_non_numeric_values
     @mql_results = [{"Column A" => "string", "Column B" => 2}]
-    @table = Table.new(@mql_results)
+    @table = Table.new(@mql_results, @project)
     calculation_details = CalculationDetails.new("Column C", "Column A + Column B")
     exception_message = "Column A contains a non-numeric value, 'string'"
 

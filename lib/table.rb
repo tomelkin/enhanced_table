@@ -4,8 +4,9 @@ class Table
 
   attr_reader :records
 
-  def initialize mql_results
+  def initialize mql_results, project
     @records = mql_results
+    @project = project
   end
 
   def column_names
@@ -18,7 +19,10 @@ class Table
     @records.each do |record|
       row = []
       record.keys.each do |column|
-        row << ResultFormatter.format_value(record[column])
+        value = ResultFormatter.format_value(record[column])
+        value = @project.format_date_with_project_date_format(value) if value.is_a?(Date)
+
+        row << value
       end
       rows << row
     end

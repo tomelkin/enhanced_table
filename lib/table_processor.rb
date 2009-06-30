@@ -1,5 +1,4 @@
 require File.join(File.dirname(__FILE__), 'renaming_map_builder')
-require File.join(File.dirname(__FILE__), 'column_renamer')
 require File.join(File.dirname(__FILE__), 'table')
 require File.join(File.dirname(__FILE__), 'calculate_parameter_parser')
 

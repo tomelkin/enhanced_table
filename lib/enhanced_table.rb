@@ -27,14 +27,14 @@ class EnhancedTable
       return "<p>query <pre><code> " + query + " </code></pre> does not return any result</p>"
     end
 
-    table = Table.new(mql_results)
+    table = Table.new(mql_results, @project)
     begin
       TableProcessor.process(table, renaming_param, calculation_param)
     rescue ArgumentError => exception
       return "<p>" + exception.message + "</p>"
     end
 
-    return HtmlTableBuilder.build_html_table_from(table, @project)
+    return HtmlTableBuilder.build_html_table_from(table)
   end
 
   def can_be_cached?
