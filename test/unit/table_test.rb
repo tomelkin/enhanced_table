@@ -15,6 +15,15 @@ class TableTest < Test::Unit::TestCase
 
     assert_equal expected_rows,  @table.rows
   end
+
+  def test_should_format_dates_and_number_when_getting_back_rows
+    ["Row 1A", "Row 1B", "Row 2A", "Row 2B"].each do |value|
+      ResultFormatter.expects(:format_value).with(value).returns(value + " formatted")
+    end
+
+    expected_rows = [["Row 1A formatted", "Row 1B formatted"],["Row 2A formatted", "Row 2B formatted"]]
+    assert_equal expected_rows, @table.rows
+  end
 end
 
 class TableRenameColumnsTest < Test::Unit::TestCase

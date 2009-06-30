@@ -3,9 +3,8 @@ require LibDirectory.file('mql_date_formatter')
 
 
 class MqlDateFormatterTest < Test::Unit::TestCase
-  def test_converts_valid_date_string_to_date  
+  def test_converts_valid_date_string_to_date
     assert_equal Date.civil(2008, 1, 2), MqlDateFormatter.format_value("2008-01-02")
-    
   end
 
   def test_should_return_original_value_when_date_string_is_not_in_mql_date_format
@@ -22,4 +21,6 @@ class MqlDateFormatterTest < Test::Unit::TestCase
     some_random_string = "some random string"
     assert_equal some_random_string, MqlDateFormatter.format_value(some_random_string)
   end
+
+
 end

@@ -18,7 +18,7 @@ class Table
     @records.each do |record|
       row = []
       record.keys.each do |column|
-        row << record[column]
+        row << ResultFormatter.format_value(record[column])
       end
       rows << row
     end
