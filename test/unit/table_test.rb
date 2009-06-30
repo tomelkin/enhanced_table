@@ -2,6 +2,21 @@ require File.join(File.dirname(__FILE__), 'unit_test_helper')
 require LibDirectory.file('table')
 require LibDirectory.file('calculation_details')
 
+
+class TableTest < Test::Unit::TestCase
+  def setup
+    mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
+                   {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
+    @table = Table.new(mql_results)
+  end
+
+  def test_should_give_back_array_of_arrays_representing_table_rows
+    expected_rows = [["Row 1A", "Row 1B"], ["Row 2A", "Row 2B"]]
+
+    assert_equal expected_rows,  @table.rows
+  end
+end
+
 class TableRenameColumnsTest < Test::Unit::TestCase
 
   def setup

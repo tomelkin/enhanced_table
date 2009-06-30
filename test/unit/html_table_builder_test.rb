@@ -26,7 +26,7 @@ class HtmlTableBuilderTest < Test::Unit::TestCase
 
     ColumnNameParser.expects(:build_html_table_header_from).with(@table.column_names).returns(html_header).once
     ResultFormatter.expects(:format_result).with(records).returns(@mql_results).once
-    RowParser.expects(:parse_rows_from).with(records, @project).returns(html_rows).once
+    RowParser.expects(:build_html_table_rows_from).with(@table.rows, @project).returns(html_rows).once
 
     expected_html = "<table>" + html_header + html_rows + "</table>"
 

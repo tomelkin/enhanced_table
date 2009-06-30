@@ -12,6 +12,20 @@ class Table
     @records.first.keys
   end
 
+  def rows
+    rows = []
+
+    @records.each do |record|
+      row = []
+      record.keys.each do |column|
+        row << record[column]
+      end
+      rows << row
+    end
+
+    return rows
+  end
+
   def rename_columns(renaming_map)
     renamed_results = []
     @records.each do |row|

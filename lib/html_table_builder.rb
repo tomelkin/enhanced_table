@@ -8,8 +8,9 @@ class HtmlTableBuilder
     html_table = "<table>"
 
     html_table << ColumnNameParser.build_html_table_header_from(table.column_names)
-    formatted_result = ResultFormatter.format_result(records)
-    html_table << RowParser.parse_rows_from(formatted_result, mingle_project)
+    table = Table.new(ResultFormatter.format_result(records))
+    
+    html_table << RowParser.build_html_table_rows_from(table.rows, mingle_project)
 
     html_table << "</table>"
     return html_table
