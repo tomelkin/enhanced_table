@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'calculation_details')
+
 class CalculateParameterParser
 
   def self.parse(calculate_param)

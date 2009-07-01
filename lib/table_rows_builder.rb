@@ -3,8 +3,8 @@ class TableRowsBuilder
     html = ""
     table_rows.each do |row|
       row_string = "<tr>"
-      row.each do |value|
-        row_string << "<td>#{value}</td>"
+      row.each do |cell|
+        row_string << "<td>#{cell.value}</td>"
       end
       row_string << "</tr>"
       html << row_string

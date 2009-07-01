@@ -9,13 +9,16 @@ class EnhancedTableTest < Test::Unit::TestCase
   RENAMING_PARAM = "Header A as Header A Renamed, 'Header B' as 'Header B Renamed'"
   CALCULATION_PARAM = "Header A + Header B as Header C"
   MULTIPLE_CALCULATION_PARAM = "Header A + Header B as Header C, Header A * Header B + 2 as Header D"
-
-
   PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}"}
 
   def setup
     @project = mock()
+    @property_definitions =  [stub(:name => "text",
+                                   :type_description => Mingle::PropertyDefinition::MANAGED_TEXT_TYPE,
+                                   :values => [stub(:color => "red", :db_identifier => 'RedThing')])]
+
     @project.expects(:execute_mql).with(QUERY).returns(MQL_QUERY_RESULTS)
+    @project.expects(:property_definitions).returns(@property_definitions)
   end
 
   def test_should_execute_query_and_produce_html_table

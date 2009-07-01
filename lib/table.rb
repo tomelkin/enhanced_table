@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'cell')
+
 class Table
 
   NUMBER_REGEX = /^[+-]?\d+?(\.\d+)?$/
@@ -21,8 +23,9 @@ class Table
       record.keys.each do |column|
         value = ResultFormatter.format_value(record[column])
         value = @project.format_date_with_project_date_format(value) if value.is_a?(Date)
+        cell = Cell.new(value)
 
-        row << value
+        row << cell
       end
       rows << row
     end

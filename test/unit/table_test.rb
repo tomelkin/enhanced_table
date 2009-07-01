@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'unit_test_helper')
 require LibDirectory.file('table')
 require LibDirectory.file('calculation_details')
+require LibDirectory.file('cell')
 
 
 class TableTest < Test::Unit::TestCase
@@ -11,8 +12,8 @@ class TableTest < Test::Unit::TestCase
     @table = Table.new(mql_results, @project)
   end
 
-  def test_should_give_back_array_of_arrays_representing_table_rows
-    expected_rows = [["Row 1A", "Row 1B"], ["Row 2A", "Row 2B"]]
+  def test_should_give_back_array_of_cells_representing_table_rows
+    expected_rows = [[Cell.new("Row 1A"), Cell.new("Row 1B")], [Cell.new("Row 2A"), Cell.new("Row 2B")]]
 
     assert_equal expected_rows,  @table.rows
   end
@@ -22,7 +23,7 @@ class TableTest < Test::Unit::TestCase
       ResultFormatter.expects(:format_value).with(value).returns(value + " formatted")
     end
 
-    expected_rows = [["Row 1A formatted", "Row 1B formatted"], ["Row 2A formatted", "Row 2B formatted"]]
+    expected_rows = [[Cell.new("Row 1A formatted"), Cell.new("Row 1B formatted")], [Cell.new("Row 2A formatted"), Cell.new("Row 2B formatted")]]
     assert_equal expected_rows, @table.rows
   end
 
@@ -36,7 +37,7 @@ class TableTest < Test::Unit::TestCase
     ResultFormatter.expects(:format_value).with(date_as_string).returns(date)
     @project.expects(:format_date_with_project_date_format).with(date).returns("01 Jan 2008")
 
-    expected_rows = [["01 Jan 2008"]]
+    expected_rows = [[Cell.new("01 Jan 2008")]]
 
     assert_equal expected_rows, @table.rows
   end
