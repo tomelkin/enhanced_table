@@ -4,7 +4,11 @@ class TableRowsBuilder
     table_rows.each do |row|
       row_string = "<tr>"
       row.each do |cell|
-        row_string << "<td>#{cell.value}</td>"
+        if not cell.color.empty?
+          row_string << "<td style='color:#{cell.color}'>#{cell.value}</td>"
+        else
+          row_string << "<td>#{cell.value}</td>"
+        end
       end
       row_string << "</tr>"
       html << row_string

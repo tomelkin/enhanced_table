@@ -9,6 +9,9 @@ class Table
   def initialize mql_results, project
     @records = mql_results
     @project = project
+    @property_definition_loader = PropertyDefinitionLoader.new(@project)
+
+    @renaming_map = {}
   end
 
   def column_names
@@ -21,11 +24,15 @@ class Table
     @records.each do |record|
       row = []
       record.keys.each do |column|
-        value = ResultFormatter.format_value(record[column])
-        value = @project.format_date_with_project_date_format(value) if value.is_a?(Date)
-        cell = Cell.new(value)
+        raw_value = record[column]
 
-        row << cell
+        value = ResultFormatter.format_value(raw_value)
+        value = @project.format_date_with_project_date_format(value) if value.is_a?(Date)
+
+        original_column_name = get_original_column_name(column)
+        color = @property_definition_loader.get_color_for(original_column_name, raw_value)
+
+        row << Cell.new(value, color)
       end
       rows << row
     end
@@ -33,8 +40,10 @@ class Table
     return rows
   end
 
+
   def rename_columns(renaming_map)
     renamed_results = []
+    @renaming_map = renaming_map
     @records.each do |row|
       renamed_row = {}
       row.keys.each do |column_name|
@@ -61,8 +70,8 @@ class Table
           verify_column_exists(record, formula, identifier)
           row_value = record[identifier] || 0.0
           validate_row_value(identifier, row_value)
-
           pattern = Regexp.new('\b' + identifier+ '\b')
+
           expression.gsub!(pattern, row_value.to_f.to_s)
         end
       end
@@ -82,6 +91,15 @@ class Table
       raise ArgumentError.new("Trying to evaluate a non-numeric expression! '#{expression}'")
     end
   end
+
+  def get_original_column_name(column)
+    @renaming_map.keys.each do |key|
+      renamed_column_name = @renaming_map[key]
+      return key if renamed_column_name == column
+    end
+    return column
+  end
+
 
   def get_identifiers(equation)
     identifiers = equation.split(/\+|-|\*|\//)

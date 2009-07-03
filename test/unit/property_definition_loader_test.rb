@@ -9,23 +9,35 @@ class PropertyDefinitionLoaderTest < Test::Unit::TestCase
 
   def setup
     @project = mock
-  end
 
-  def test_should_not_load_properties_that_are_not_managed_text_types_or_managed_number_type
     managed_text_type_property = build_managed_text_type_property
     managed_number_type_property = build_managed_number_type_property
-    property_definitions = [build_irrelevent_property_definition, managed_text_type_property, managed_number_type_property]
+    irrelevent_property = build_irrelevent_property_definition
+    property_definitions = [irrelevent_property, managed_text_type_property, managed_number_type_property]
 
     @project.expects(:property_definitions).returns(property_definitions)
     @property_definition_loader = PropertyDefinitionLoader.new(@project)
-
-    assert_nil @property_definition_loader.load_property_for("Development Completed On")
-    assert_equal managed_text_type_property, @property_definition_loader.load_property_for("text")
-    assert_equal managed_number_type_property, @property_definition_loader.load_property_for("number")
   end
 
+  def test_should_map_managed_text_or_number_type_values_to_color
+    assert_equal "red", @property_definition_loader.get_color_for("text", "RedThing")
+    assert_equal "blue", @property_definition_loader.get_color_for("text", "BlueThing")
+  end
+
+  def test_should_return_empty_string_when_property_name_does_not_exist
+    assert_equal "", @property_definition_loader.get_color_for("unexistent property", "some value")
+  end
+
+  def test_should_return_empty_string_when_value_is_not_defined_in_property_color_map
+    assert_equal "", @property_definition_loader.get_color_for("text", "YellowThing")
+  end
+
+  private
+
   def build_managed_text_type_property
-    values = [stub(:color => "red", :db_identifier => 'RedThing')]
+    values = [stub(:db_identifier => "RedThing", :color => "red"),
+              stub(:db_identifier => "BlueThing", :color => "blue"),
+              stub(:db_identifier => "value returning nil color", :color => nil)]
     stub(:name => "text",
          :type_description => MANAGED_TEXT_TYPE,
          :values => values)

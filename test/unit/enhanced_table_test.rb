@@ -13,9 +13,10 @@ class EnhancedTableTest < Test::Unit::TestCase
 
   def setup
     @project = mock()
-    @property_definitions =  [stub(:name => "text",
+    @property_definitions =  [stub(:name => "Header A",
                                    :type_description => Mingle::PropertyDefinition::MANAGED_TEXT_TYPE,
-                                   :values => [stub(:color => "red", :db_identifier => 'RedThing')])]
+                                   :values => [stub(:color => "red", :db_identifier => '10'),
+                                               stub(:color => "blue", :db_identifier => "100")])]
 
     @project.expects(:execute_mql).with(QUERY).returns(MQL_QUERY_RESULTS)
     @project.expects(:property_definitions).returns(@property_definitions)
@@ -29,8 +30,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th></tr>" +
-            "<tr><td>10</td><td>30</td></tr>" +
-            "<tr><td>100</td><td>13</td></tr>" +
+            "<tr><td style='color:red'>10</td><td>30</td></tr>" +
+            "<tr><td style='color:blue'>100</td><td>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -44,8 +45,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A Renamed</th><th>Header B Renamed</th></tr>" +
-            "<tr><td>10</td><td>30</td></tr>" +
-            "<tr><td>100</td><td>13</td></tr>" +
+            "<tr><td style='color:red'>10</td><td>30</td></tr>" +
+            "<tr><td style='color:blue'>100</td><td>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -59,8 +60,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th><th>Header C</th></tr>" +
-            "<tr><td>10</td><td>30</td><td>40</td></tr>" +
-            "<tr><td>100</td><td>13</td><td>113</td></tr>" +
+            "<tr><td style='color:red'>10</td><td>30</td><td>40</td></tr>" +
+            "<tr><td style='color:blue'>100</td><td>13</td><td>113</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -74,8 +75,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th><th>Header C</th><th>Header D</th></tr>" +
-            "<tr><td>10</td><td>30</td><td>40</td><td>302</td></tr>" +
-            "<tr><td>100</td><td>13</td><td>113</td><td>1302</td></tr>" +
+            "<tr><td style='color:red'>10</td><td>30</td><td>40</td><td>302</td></tr>" +
+            "<tr><td style='color:blue'>100</td><td>13</td><td>113</td><td>1302</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)

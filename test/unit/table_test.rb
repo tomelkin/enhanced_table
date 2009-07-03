@@ -6,24 +6,33 @@ require LibDirectory.file('cell')
 
 class TableTest < Test::Unit::TestCase
   def setup
-    mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
-                   {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
-    @project = mock()
-    @table = Table.new(mql_results, @project)
+    @mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
+                    {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
+    @project = mock
+    @property_definition_loader = mock
   end
 
   def test_should_give_back_array_of_cells_representing_table_rows
-    expected_rows = [[Cell.new("Row 1A"), Cell.new("Row 1B")], [Cell.new("Row 2A"), Cell.new("Row 2B")]]
+    default_expectations_for_property_definition_loader()
+    @table = Table.new(@mql_results, @project)
+
+    expected_rows = [[Cell.new("Row 1A", "color 1A"), Cell.new("Row 1B", "color 1B")],
+                     [Cell.new("Row 2A", "color 2A"), Cell.new("Row 2B", "color 2B")]]
 
     assert_equal expected_rows,  @table.rows
   end
 
   def test_should_format_dates_and_number_when_getting_back_rows
+    default_expectations_for_property_definition_loader()
+    @table = Table.new(@mql_results, @project)
+
     ["Row 1A", "Row 1B", "Row 2A", "Row 2B"].each do |value|
       ResultFormatter.expects(:format_value).with(value).returns(value + " formatted")
     end
 
-    expected_rows = [[Cell.new("Row 1A formatted"), Cell.new("Row 1B formatted")], [Cell.new("Row 2A formatted"), Cell.new("Row 2B formatted")]]
+    expected_rows = [[Cell.new("Row 1A formatted", "color 1A"), Cell.new("Row 1B formatted", "color 1B")],
+                     [Cell.new("Row 2A formatted", "color 2A"), Cell.new("Row 2B formatted", "color 2B")]]
+
     assert_equal expected_rows, @table.rows
   end
 
@@ -31,17 +40,28 @@ class TableTest < Test::Unit::TestCase
     date_as_string = "2008-01-01"
     date = Date.parse(date_as_string)
     mql_results = [{"Date Column" => date_as_string}]
-    
+    formatted_date = "01 Jan 2008"
+
+    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
+    ResultFormatter.expects(:format_value).with(date_as_string).returns(date)
+    @project.expects(:format_date_with_project_date_format).with(date).returns(formatted_date)
+    @property_definition_loader.expects(:get_color_for).with("Date Column", date_as_string).returns("a color")
+
     @table = Table.new(mql_results, @project)
 
-    ResultFormatter.expects(:format_value).with(date_as_string).returns(date)
-    @project.expects(:format_date_with_project_date_format).with(date).returns("01 Jan 2008")
-
-    expected_rows = [[Cell.new("01 Jan 2008")]]
-
+    expected_rows = [[Cell.new("01 Jan 2008", "a color")]]
     assert_equal expected_rows, @table.rows
   end
 
+  private
+
+  def default_expectations_for_property_definition_loader()
+    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
+    @property_definition_loader.expects(:get_color_for).with("Column A", "Row 1A").returns("color 1A")
+    @property_definition_loader.expects(:get_color_for).with("Column B", "Row 1B").returns("color 1B")
+    @property_definition_loader.expects(:get_color_for).with("Column A", "Row 2A").returns("color 2A")
+    @property_definition_loader.expects(:get_color_for).with("Column B", "Row 2B").returns("color 2B")
+  end
 end
 
 class TableRenameColumnsTest < Test::Unit::TestCase
@@ -49,7 +69,9 @@ class TableRenameColumnsTest < Test::Unit::TestCase
   def setup
     mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
                    {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
-    @project = mock()
+    @project = mock
+    @property_definition_loader = mock
+    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
     @table = Table.new(mql_results, @project)
   end
 
@@ -82,7 +104,9 @@ class TableAddCalculatedColumnTest < Test::Unit::TestCase
 
   def setup
     @mql_results = [{"Column A"=> "3", "Column B" => "2"}]
-    @project = mock()
+    @project = mock
+    @property_definition_loader = mock 
+    PropertyDefinitionLoader.stubs(:new).returns(@property_definition_loader)
     @table = Table.new(@mql_results, @project)
   end
 

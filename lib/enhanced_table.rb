@@ -22,8 +22,6 @@ class EnhancedTable
       return EMPTY_QUERY_ERROR_MESSAGE
     end
 
-    PropertyDefinitionLoader.new(@project)
-
     mql_results = @project.execute_mql(query)
 
     if mql_results.empty?
@@ -38,13 +36,6 @@ class EnhancedTable
     end
 
     html_table = HtmlTableBuilder.build_html_table_from(table)
-
-    #@project.property_definitions.each do |property_definition|
-    #  puts "name = #{property_definition.name}\n" +
-    #          "description = #{property_definition.description}\n" +
-    #          "type_description = #{property_definition.type_description}"
-    #end
-
     return html_table
   end
 
