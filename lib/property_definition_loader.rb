@@ -4,11 +4,11 @@ class PropertyDefinitionLoader
                              Mingle::PropertyDefinition::MANAGED_NUMBER_TYPE]
 
 
-  def initialize project
+  def initialize project, column_names
     @property_definition_map = {}
 
     project.property_definitions.each do |property|
-      if INCLUDED_PROPERTY_TYPES.include? property.type_description
+      if column_names.include?(property.name) && INCLUDED_PROPERTY_TYPES.include?(property.type_description)
         value_color_map = create_value_color_map(property)
         @property_definition_map[property.name] = value_color_map
       end
@@ -25,7 +25,12 @@ class PropertyDefinitionLoader
   def create_value_color_map(property)
     value_color_map = {}
     property.values.each do |value|
-      value_color_map[value.db_identifier] = value.color
+      begin
+        value_color_map[value.db_identifier] = value.color
+      rescue Exception
+        raise Exception.new("Color for Property : '#{property.name}' and Value : '#{value.db_identifier}' is not set")
+        end
+
     end
 
     return value_color_map

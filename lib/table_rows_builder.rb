@@ -5,7 +5,7 @@ class TableRowsBuilder
       row_string = "<tr>"
       row.each do |cell|
         if not cell.color.empty?
-          row_string << "<td style='color:#{cell.color}'>#{cell.value}</td>"
+          row_string << "<td style='color:\##{cell.color}'>#{cell.value}</td>"
         else
           row_string << "<td>#{cell.value}</td>"
         end

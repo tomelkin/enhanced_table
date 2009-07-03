@@ -42,7 +42,7 @@ class TableTest < Test::Unit::TestCase
     mql_results = [{"Date Column" => date_as_string}]
     formatted_date = "01 Jan 2008"
 
-    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
+    PropertyDefinitionLoader.expects(:new).with(@project, ["Date Column"]).returns(@property_definition_loader)
     ResultFormatter.expects(:format_value).with(date_as_string).returns(date)
     @project.expects(:format_date_with_project_date_format).with(date).returns(formatted_date)
     @property_definition_loader.expects(:get_color_for).with("Date Column", date_as_string).returns("a color")
@@ -56,7 +56,7 @@ class TableTest < Test::Unit::TestCase
   private
 
   def default_expectations_for_property_definition_loader()
-    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
+    PropertyDefinitionLoader.expects(:new).with(@project, ['Column A', 'Column B']).returns(@property_definition_loader)
     @property_definition_loader.expects(:get_color_for).with("Column A", "Row 1A").returns("color 1A")
     @property_definition_loader.expects(:get_color_for).with("Column B", "Row 1B").returns("color 1B")
     @property_definition_loader.expects(:get_color_for).with("Column A", "Row 2A").returns("color 2A")
@@ -69,9 +69,10 @@ class TableRenameColumnsTest < Test::Unit::TestCase
   def setup
     mql_results = [{"Column A"=> "Row 1A", "Column B" => "Row 1B"},
                    {"Column A"=> "Row 2A", "Column B" => "Row 2B"}]
+    column_names = ['Column A', 'Column B']
     @project = mock
     @property_definition_loader = mock
-    PropertyDefinitionLoader.expects(:new).with(@project).returns(@property_definition_loader)
+    PropertyDefinitionLoader.expects(:new).with(@project, column_names).returns(@property_definition_loader)
     @table = Table.new(mql_results, @project)
   end
 

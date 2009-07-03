@@ -9,7 +9,7 @@ class Table
   def initialize mql_results, project
     @records = mql_results
     @project = project
-    @property_definition_loader = PropertyDefinitionLoader.new(@project)
+    @property_definition_loader = PropertyDefinitionLoader.new(@project, column_names)
 
     @renaming_map = {}
   end
