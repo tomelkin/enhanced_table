@@ -8,6 +8,8 @@ EnhancedTable
   EMPTY_QUERY_ERROR_MESSAGE =
           "<p>Must specify 'query' parameter for table macro. </p>"
 
+  EMPTY_RESULT_ERROR_MESSAGE = "<p>query <pre><code>%s</code></pre> does not return any result</p>"
+
   def initialize(parameters, project, current_user)
     @parameters = parameters
     @project = project
@@ -28,7 +30,7 @@ EnhancedTable
     mql_results = @project.execute_mql(query)
 
     if mql_results.empty?
-      return "<p>query <pre><code> " + query + " </code></pre> does not return any result</p>"
+      return EMPTY_RESULT_ERROR_MESSAGE % query
     end
 
 

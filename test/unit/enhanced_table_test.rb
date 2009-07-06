@@ -20,8 +20,8 @@ class EnhancedTableTest < Test::Unit::TestCase
                                    :values => [stub(:color => RED, :db_identifier => '10'),
                                                stub(:color => BLUE, :db_identifier => "100")])]
 
-    @project.expects(:execute_mql).with(QUERY).returns(MQL_QUERY_RESULTS)
-    @project.expects(:property_definitions).returns(@property_definitions)
+    @project.stubs(:execute_mql).with(QUERY).returns(MQL_QUERY_RESULTS)
+    @project.stubs(:property_definitions).returns(@property_definitions)
   end
 
   def test_should_execute_query_and_produce_html_table
@@ -96,6 +96,27 @@ class EnhancedTableTest < Test::Unit::TestCase
     expected_html = "<p>#{exception_message}</p>"
 
     assert_equal expected_html, html
+  end
+
+  def test_should_return_error_message_when_query_parameter_is_nil
+    exception_message = EnhancedTable::EMPTY_QUERY_ERROR_MESSAGE
+
+    parameters = {'query' => nil}
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+
+    assert_equal exception_message, enhanced_table.execute
+  end
+
+  def test_should_return_query_does_not_return_any_result_error_when_given_query_returns_empty_result
+    query = "some query"
+    exception_message = EnhancedTable::EMPTY_RESULT_ERROR_MESSAGE % query
+
+    parameters = {'query' => query}
+    
+    @project.expects(:execute_mql).with(query).returns([])
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+
+    assert_equal exception_message, enhanced_table.execute
   end
 
 
