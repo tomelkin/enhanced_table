@@ -40,7 +40,9 @@ There are two parameters that can be used to colour a table:
      query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
      table-color-option: background
      column-color-options:
+     <pre>
        Total Planning Estimate: background
        Priority: text
+     </pre>
 }}
 </code></pre>
