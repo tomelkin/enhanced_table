@@ -26,21 +26,21 @@ There are two parameters that can be used to colour a table:
 
 * The first parameter is 'table-color-option' -> this parameter will define default colouring option for table. The options for this parameter are : 'off', 'text' and 'background'.  This parameter is optional, and by default is set to 'off'
 <pre><code>
-  {{
-    enhanced_table
-      query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
-      table-color-option: background
-  }}
+{{
+  enhanced_table
+   query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
+   table-color-option: background
+}}
 </code></pre>       
   
 * The second parameter is 'column-color-options' -> this parameter specified color-option for different column in a table based on column name.  This option will override the default color option set by 'table-color-option' parameter. Options for this parameter is the same as 'table-color-option'.  This parameter is optional and by default is set to 'off'.
 <pre><code>
-    {{
-      enhanced_table
-        query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
-        table-color-option: background
-        column-color-options:
-          Total Planning Estimate: background
-          Priority: text
-    }}
+{{
+   enhanced_table
+     query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
+     table-color-option: background
+     column-color-options:
+       Total Planning Estimate: background
+       Priority: text
+}}
 </code></pre>
