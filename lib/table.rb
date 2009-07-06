@@ -4,23 +4,14 @@ class Table
 
   NUMBER_REGEX = /^[+-]?\d+?(\.\d+)?$/
 
-  attr_reader :records
+  attr_reader :records, :color_option
 
-  def initialize mql_results, project, text_color_enabled = false, bg_color_enabled = false
+  def initialize mql_results, project, color_option = :off
     @records = mql_results
     @project = project
     @property_definition_loader = PropertyDefinitionLoader.new(@project, column_names)
     @renaming_map = {}
-    @text_color_enabled = text_color_enabled
-    @bg_color_enabled = bg_color_enabled
-  end
-
-  def bg_color_enabled?
-    @bg_color_enabled
-  end
-
-  def text_color_enabled?
-    @text_color_enabled
+    @color_option = color_option
   end
 
   def column_names

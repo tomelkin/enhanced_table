@@ -10,6 +10,8 @@ EnhancedTable
 
   EMPTY_RESULT_ERROR_MESSAGE = "query <pre><code>%s</code></pre> does not return any result"
 
+  INVALID_COLOR_OPTION_ERROR_MESSAGE = "'%s'. Valid options are 'off', 'text', or 'background'"
+
   def initialize(parameters, project, current_user)
     @parameters = parameters
     @project = project
@@ -19,7 +21,7 @@ EnhancedTable
 
   def execute
     begin
-      table = Table.new(mql_results, @project, text_color_param, bg_color_param)
+      table = Table.new(mql_results, @project, color_option)
       TableProcessor.process(table, renaming_param, calculation_param)
       html_table = HtmlTableBuilder.build_html_table_from(table)
       return html_table
@@ -51,20 +53,22 @@ EnhancedTable
   end
 
   def renaming_param
-    renaming_param = @parameters['rename']
+    @parameters['rename']
   end
 
   def calculation_param
-    calculation_param = @parameters['calculate']
+    @parameters['calculate']
   end
 
-  def text_color_param
-    text_color_param = @parameters['text-color-enabled']
-  end
+  def color_option
+    color_param = @parameters['color']
+    return :off if color_param == nil
 
-  def bg_color_param
-    bg_color_param = @parameters['bg-color-enabled']
+    if %w(off text background).include? color_param
+      color_param.to_sym
+    else
+      raise Exception.new INVALID_COLOR_OPTION_ERROR_MESSAGE % color_param
+    end
   end
-
 end
 

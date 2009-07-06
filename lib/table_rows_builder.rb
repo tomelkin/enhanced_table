@@ -15,15 +15,18 @@ class TableRowsBuilder
   end
 
   def self.build_cell_html(cell, table)
-    cell_html = ""
-    if (table.bg_color_enabled? && !cell.color.empty?)
-      cell_html << "<td style='background-color:\##{cell.color}'>#{cell.value}</td>"
-    elsif table.text_color_enabled? && !cell.color.empty?
-      cell_html << "<td style='color:\##{cell.color}'>#{cell.value}</td>"
+    if not cell.color.empty?
+      case table.color_option
+        when :off
+          "<td>#{cell.value}</td>"
+        when :text
+          "<td style='color:\##{cell.color}'>#{cell.value}</td>"
+        when :background
+          "<td style='background-color:\##{cell.color}'>#{cell.value}</td>"
+      end
     else
-      cell_html << "<td>#{cell.value}</td>"
+      "<td>#{cell.value}</td>"
     end
-
-    return cell_html
   end
+
 end

@@ -9,7 +9,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   RENAMING_PARAM = "Header A as Header A Renamed, 'Header B' as 'Header B Renamed'"
   CALCULATION_PARAM = "Header A + Header B as Header C"
   MULTIPLE_CALCULATION_PARAM = "Header A + Header B as Header C, Header A * Header B + 2 as Header D"
-  PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}"}
+  PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}", 'color' => "off"}
   RED = "ff0000"
   BLUE = "ff1111"
 
@@ -85,7 +85,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_set_color_when_specified_as_a_param
-    parameters = {'query' => QUERY, 'text-color-enabled' => true}
+    parameters = {'query' => QUERY, 'color' => "text"}
 
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
     html = enhanced_table.execute
@@ -100,7 +100,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_set_background_color_according_to_param
-    parameters = {'query' => QUERY, 'bg-color-enabled' => true}
+    parameters = {'query' => QUERY, 'color' => "background"}
 
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
     html = enhanced_table.execute
@@ -150,5 +150,14 @@ class EnhancedTableTest < Test::Unit::TestCase
     assert_equal exception_message, enhanced_table.execute
   end
 
+  def test_should_return_error_message_when_color_parameter_contains_invalid_option
+    invalid_color_option = 'invalid color option'
 
+    exception_message = "<p>#{EnhancedTable::INVALID_COLOR_OPTION_ERROR_MESSAGE % invalid_color_option}</p>"
+
+    parameters = {'query' => QUERY, 'color' => invalid_color_option}
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+
+    assert_equal exception_message, enhanced_table.execute
+  end
 end
