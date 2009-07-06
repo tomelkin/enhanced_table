@@ -85,7 +85,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_set_color_when_specified_as_a_param
-    parameters = {'query' => QUERY, 'text_color_enabled' => true}
+    parameters = {'query' => QUERY, 'text-color-enabled' => true}
 
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
     html = enhanced_table.execute
@@ -97,6 +97,22 @@ class EnhancedTableTest < Test::Unit::TestCase
             "</table>"
 
     assert_equal(expected_html, html)
+  end
+
+  def test_should_set_background_color_according_to_param
+    parameters = {'query' => QUERY, 'bg-color-enabled' => true}
+
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
+
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th></tr>" +
+            "<tr><td style='background-color:##{RED}'>10</td><td>30</td></tr>" +
+            "<tr><td style='background-color:##{BLUE}'>100</td><td>13</td></tr>" +
+            "</table>"
+
+    assert_equal(expected_html, html)
+
   end
 
   def test_should_give_back_html_with_error_message_when_getting_any_exception

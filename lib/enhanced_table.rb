@@ -16,9 +16,10 @@ EnhancedTable
     @current_user = current_user
   end
 
+
   def execute
     begin
-      table = Table.new(mql_results, @project, text_color_param)
+      table = Table.new(mql_results, @project, text_color_param, bg_color_param)
       TableProcessor.process(table, renaming_param, calculation_param)
       html_table = HtmlTableBuilder.build_html_table_from(table)
       return html_table
@@ -58,7 +59,11 @@ EnhancedTable
   end
 
   def text_color_param
-    text_color_param = @parameters['text_color_enabled']
+    text_color_param = @parameters['text-color-enabled']
+  end
+
+  def bg_color_param
+    bg_color_param = @parameters['bg-color-enabled']
   end
 
 end
