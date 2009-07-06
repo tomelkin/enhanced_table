@@ -24,8 +24,7 @@ Columns that are Managed Text types or Managed Number types can have their text 
 
 There are two parameters that can be used to colour a table:
 
-* The first parameter is 'table-color-option' -> this parameter will define default colouring option for table
-  The options for this parameter are : 'off', 'text' and 'background'.  This parameter is optional, and by default is set to 'off'
+* The first parameter is 'table-color-option' -> this parameter will define default colouring option for table. The options for this parameter are : 'off', 'text' and 'background'.  This parameter is optional, and by default is set to 'off'
 
        {{
           enhanced_table
@@ -43,8 +42,3 @@ There are two parameters that can be used to colour a table:
                Total Planning Estimate: background
                Priority: text
       }}
-  
- 
-
-
-
