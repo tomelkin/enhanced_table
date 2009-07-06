@@ -17,3 +17,32 @@ Once installed the enhanced table macro can be used like follows:
 * If you do an ORDER BY in your MQL query on a column that you rename, you must use the original column name in the ORDER BY clause.
 * The AS keyword is case insensitive, but column names are not.
 * When a column is used in a calculated column expression, all of its row's values should be numeric. A null value returned by MQL is treated as zero for the sake of all calculated values.
+
+# Column colouring options
+
+Columns that are Managed Text types or Managed Number types can have their text or backgrounds coloured based on their defined reporting colour.  (See Project Admin -> Card Properties)  There are two parameters that can be used to colour a table.
+* The first parameter is 'table-color-option' -> this parameter will define default colouring option for table
+  The options for this parameter are : 'off', 'text' and 'background'.  This parameter is optional, and by default is set to 'off'
+  e.g.
+     {{
+       enhanced_table
+         query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
+         table-color-option: background
+     }}
+
+* The second parameter is 'column-color-options' -> this parameter specified color-option for different column in a table based on column name.  This option will override the default color option set by 'table-color-option' parameter. Options for this parameter is the same as 'table-color-option'.  This parameter is optional and by default is set to 'off'.
+  e.g.
+
+    {{
+      enhanced_table
+        query: SELECT 'Total Planning Estimate', 'Priority' WHERE Type = 'Defect'
+        table-color-option: background
+        column-color-options:
+            Total Planning Estimate: background
+            Priority: text
+    }}
+  
+ 
+
+
+
