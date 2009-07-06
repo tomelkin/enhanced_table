@@ -16,8 +16,8 @@ class TableTest < Test::Unit::TestCase
     default_expectations_for_property_definition_loader()
     @table = Table.new(@mql_results, @project)
 
-    expected_rows = [[Cell.new("Row 1A", "color 1A"), Cell.new("Row 1B", "color 1B")],
-                     [Cell.new("Row 2A", "color 2A"), Cell.new("Row 2B", "color 2B")]]
+    expected_rows = [[Cell.new("Column A", "Row 1A", "color 1A"), Cell.new("Column B", "Row 1B", "color 1B")],
+                     [Cell.new("Column A", "Row 2A", "color 2A"), Cell.new("Column B", "Row 2B", "color 2B")]]
 
     assert_equal expected_rows,  @table.rows
   end
@@ -30,8 +30,8 @@ class TableTest < Test::Unit::TestCase
       ResultFormatter.expects(:format_value).with(value).returns(value + " formatted")
     end
 
-    expected_rows = [[Cell.new("Row 1A formatted", "color 1A"), Cell.new("Row 1B formatted", "color 1B")],
-                     [Cell.new("Row 2A formatted", "color 2A"), Cell.new("Row 2B formatted", "color 2B")]]
+    expected_rows = [[Cell.new("Column A", "Row 1A formatted", "color 1A"), Cell.new("Column B", "Row 1B formatted", "color 1B")],
+                     [Cell.new("Column A", "Row 2A formatted", "color 2A"), Cell.new("Column B", "Row 2B formatted", "color 2B")]]
 
     assert_equal expected_rows, @table.rows
   end
@@ -49,7 +49,7 @@ class TableTest < Test::Unit::TestCase
 
     @table = Table.new(mql_results, @project)
 
-    expected_rows = [[Cell.new("01 Jan 2008", "a color")]]
+    expected_rows = [[Cell.new("Date Column", "01 Jan 2008", "a color")]]
     assert_equal expected_rows, @table.rows
   end
 

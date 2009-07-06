@@ -21,7 +21,7 @@ EnhancedTable
 
   def execute
     begin
-      table = Table.new(mql_results, @project, color_option)
+      table = Table.new(mql_results, @project, color_option, column_color_options)
       TableProcessor.process(table, renaming_param, calculation_param)
       html_table = HtmlTableBuilder.build_html_table_from(table)
       return html_table
@@ -39,7 +39,7 @@ EnhancedTable
   def query
     query = @parameters['query']
     if query == nil
-      raise Exception.new EMPTY_QUERY_ERROR_MESSAGE
+      raise Exception.new(EMPTY_QUERY_ERROR_MESSAGE)
     end
     return query
   end
@@ -47,9 +47,13 @@ EnhancedTable
   def mql_results
     mql_results = @project.execute_mql(query)
     if mql_results.empty?
-      raise Exception.new EMPTY_RESULT_ERROR_MESSAGE % query
+      raise Exception.new(EMPTY_RESULT_ERROR_MESSAGE % query)
     end
     return mql_results
+  end
+
+  def column_color_options
+    @parameters['column-color-options'] || {}
   end
 
   def renaming_param
@@ -61,13 +65,13 @@ EnhancedTable
   end
 
   def color_option
-    color_param = @parameters['color']
-    return :off if color_param == nil
+    color_param = @parameters['table-color-option']
+    return 'off' if color_param == nil
 
     if %w(off text background).include? color_param
-      color_param.to_sym
+      color_param
     else
-      raise Exception.new INVALID_COLOR_OPTION_ERROR_MESSAGE % color_param
+      raise Exception.new(INVALID_COLOR_OPTION_ERROR_MESSAGE % color_param)
     end
   end
 end

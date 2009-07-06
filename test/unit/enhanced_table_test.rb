@@ -9,9 +9,10 @@ class EnhancedTableTest < Test::Unit::TestCase
   RENAMING_PARAM = "Header A as Header A Renamed, 'Header B' as 'Header B Renamed'"
   CALCULATION_PARAM = "Header A + Header B as Header C"
   MULTIPLE_CALCULATION_PARAM = "Header A + Header B as Header C, Header A * Header B + 2 as Header D"
-  PARAMS = {'query' => "#{QUERY}", 'rename' => "#{RENAMING_PARAM}", 'calculate' => "#{CALCULATION_PARAM}", 'color' => "off"}
   RED = "ff0000"
   BLUE = "ff1111"
+  BLACK = "ff2222"
+  GREEN = "ff3333"
 
   def setup
     @project = mock()
@@ -85,7 +86,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_set_color_when_specified_as_a_param
-    parameters = {'query' => QUERY, 'color' => "text"}
+    parameters = {'query' => QUERY, 'table-color-option' => "text"}
 
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
     html = enhanced_table.execute
@@ -100,7 +101,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_set_background_color_according_to_param
-    parameters = {'query' => QUERY, 'color' => "background"}
+    parameters = {'query' => QUERY, 'table-color-option' => "background"}
 
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
     html = enhanced_table.execute
@@ -109,6 +110,35 @@ class EnhancedTableTest < Test::Unit::TestCase
             "<tr><th>Header A</th><th>Header B</th></tr>" +
             "<tr><td style='background-color:##{RED}'>10</td><td>30</td></tr>" +
             "<tr><td style='background-color:##{BLUE}'>100</td><td>13</td></tr>" +
+            "</table>"
+
+    assert_equal(expected_html, html)
+  end
+
+  def test_should_color_individual_column_based_on_specified_parameter
+    @property_definitions =  [stub(:name => "Header A",
+                                   :type_description => Mingle::PropertyDefinition::MANAGED_TEXT_TYPE,
+                                   :values => [stub(:color => RED, :db_identifier => '10'),
+                                               stub(:color => BLUE, :db_identifier => "100")]),
+                              stub(:name => "Header B",
+                                   :type_description => Mingle::PropertyDefinition::MANAGED_TEXT_TYPE,
+                                   :values => [stub(:color => BLACK, :db_identifier => "30"),
+                                               stub(:color => GREEN, :db_identifier => "13")])]
+
+    @project.stubs(:property_definitions).returns(@property_definitions)
+
+
+    color_options = {"Header A" => "text", "Header B" => "background"}
+
+    parameters = {'query' => QUERY, 'column-color-options' => color_options}
+
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
+
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th></tr>" +
+            "<tr><td style='color:##{RED}'>10</td><td style='background-color:##{BLACK}'>30</td></tr>" +
+            "<tr><td style='color:##{BLUE}'>100</td><td style='background-color:##{GREEN}'>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -155,7 +185,7 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     exception_message = "<p>#{EnhancedTable::INVALID_COLOR_OPTION_ERROR_MESSAGE % invalid_color_option}</p>"
 
-    parameters = {'query' => QUERY, 'color' => invalid_color_option}
+    parameters = {'query' => QUERY, 'table-color-option' => invalid_color_option}
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
 
     assert_equal exception_message, enhanced_table.execute
