@@ -1,7 +1,7 @@
 class TableHeaderBuilder
-  def self.build_html_table_header_from(column_names)
+  def self.build_html_table_header_from(table)
     column_string = "<tr>"
-    column_names.each do |column|
+    table.column_names.each do |column|
       column_string << "<th>#{column}</th>"
     end
     column_string << "</tr>"

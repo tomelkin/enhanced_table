@@ -32,8 +32,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th></tr>" +
-            "<tr><td style='color:##{RED}'>10</td><td>30</td></tr>" +
-            "<tr><td style='color:##{BLUE}'>100</td><td>13</td></tr>" +
+            "<tr><td>10</td><td>30</td></tr>" +
+            "<tr><td>100</td><td>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -47,8 +47,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A Renamed</th><th>Header B Renamed</th></tr>" +
-            "<tr><td style='color:##{RED}'>10</td><td>30</td></tr>" +
-            "<tr><td style='color:##{BLUE}'>100</td><td>13</td></tr>" +
+            "<tr><td>10</td><td>30</td></tr>" +
+            "<tr><td>100</td><td>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -62,8 +62,8 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th><th>Header C</th></tr>" +
-            "<tr><td style='color:##{RED}'>10</td><td>30</td><td>40</td></tr>" +
-            "<tr><td style='color:##{BLUE}'>100</td><td>13</td><td>113</td></tr>" +
+            "<tr><td>10</td><td>30</td><td>40</td></tr>" +
+            "<tr><td>100</td><td>13</td><td>113</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -77,8 +77,23 @@ class EnhancedTableTest < Test::Unit::TestCase
 
     expected_html = "<table>" +
             "<tr><th>Header A</th><th>Header B</th><th>Header C</th><th>Header D</th></tr>" +
-            "<tr><td style='color:##{RED}'>10</td><td>30</td><td>40</td><td>302</td></tr>" +
-            "<tr><td style='color:##{BLUE}'>100</td><td>13</td><td>113</td><td>1302</td></tr>" +
+            "<tr><td>10</td><td>30</td><td>40</td><td>302</td></tr>" +
+            "<tr><td>100</td><td>13</td><td>113</td><td>1302</td></tr>" +
+            "</table>"
+
+    assert_equal(expected_html, html)
+  end
+
+  def test_should_set_color_when_specified_as_a_param
+    parameters = {'query' => QUERY, 'text_color_enabled' => true}
+
+    enhanced_table = EnhancedTable.new(parameters, @project, nil)
+    html = enhanced_table.execute
+
+    expected_html = "<table>" +
+            "<tr><th>Header A</th><th>Header B</th></tr>" +
+            "<tr><td style='color:##{RED}'>10</td><td>30</td></tr>" +
+            "<tr><td style='color:##{BLUE}'>100</td><td>13</td></tr>" +
             "</table>"
 
     assert_equal(expected_html, html)
@@ -99,7 +114,7 @@ class EnhancedTableTest < Test::Unit::TestCase
   end
 
   def test_should_return_error_message_when_query_parameter_is_nil
-    exception_message = EnhancedTable::EMPTY_QUERY_ERROR_MESSAGE
+    exception_message = "<p>#{EnhancedTable::EMPTY_QUERY_ERROR_MESSAGE}</p>"
 
     parameters = {'query' => nil}
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
@@ -109,10 +124,10 @@ class EnhancedTableTest < Test::Unit::TestCase
 
   def test_should_return_query_does_not_return_any_result_error_when_given_query_returns_empty_result
     query = "some query"
-    exception_message = EnhancedTable::EMPTY_RESULT_ERROR_MESSAGE % query
+    exception_message = "<p>#{EnhancedTable::EMPTY_RESULT_ERROR_MESSAGE % query}</p>"
 
     parameters = {'query' => query}
-    
+
     @project.expects(:execute_mql).with(query).returns([])
     enhanced_table = EnhancedTable.new(parameters, @project, nil)
 

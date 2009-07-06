@@ -6,12 +6,16 @@ class Table
 
   attr_reader :records
 
-  def initialize mql_results, project
+  def initialize mql_results, project, text_color_enabled = false
     @records = mql_results
     @project = project
     @property_definition_loader = PropertyDefinitionLoader.new(@project, column_names)
-
     @renaming_map = {}
+    @text_color_enabled = text_color_enabled
+  end
+
+  def text_color_enabled?
+    @text_color_enabled
   end
 
   def column_names
@@ -30,6 +34,7 @@ class Table
         value = @project.format_date_with_project_date_format(value) if value.is_a?(Date)
 
         original_column_name = get_original_column_name(column)
+
         color = @property_definition_loader.get_color_for(original_column_name, raw_value)
 
         row << Cell.new(value, color)

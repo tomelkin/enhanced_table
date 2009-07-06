@@ -6,9 +6,9 @@ class
 EnhancedTable
 
   EMPTY_QUERY_ERROR_MESSAGE =
-          "<p>Must specify 'query' parameter for table macro. </p>"
+          "Must specify 'query' parameter for table macro."
 
-  EMPTY_RESULT_ERROR_MESSAGE = "<p>query <pre><code>%s</code></pre> does not return any result</p>"
+  EMPTY_RESULT_ERROR_MESSAGE = "query <pre><code>%s</code></pre> does not return any result"
 
   def initialize(parameters, project, current_user)
     @parameters = parameters
@@ -17,36 +17,48 @@ EnhancedTable
   end
 
   def execute
-
-    html = ""
-    query = @parameters['query']
-    renaming_param = @parameters['rename']
-    calculation_param = @parameters['calculate']
-
-    if query == nil
-      return EMPTY_QUERY_ERROR_MESSAGE
-    end
-
-    mql_results = @project.execute_mql(query)
-
-    if mql_results.empty?
-      return EMPTY_RESULT_ERROR_MESSAGE % query
-    end
-
-
     begin
-      table = Table.new(mql_results, @project)
+      table = Table.new(mql_results, @project, text_color_param)
       TableProcessor.process(table, renaming_param, calculation_param)
+      html_table = HtmlTableBuilder.build_html_table_from(table)
+      return html_table
     rescue Exception => exception
       return "<p>" + exception.message + "</p>"
     end
-
-    html_table = HtmlTableBuilder.build_html_table_from(table)
-    return html_table
   end
 
   def can_be_cached?
     false  # if appropriate, switch to true once you move your macro to production
+  end
+
+  private
+
+  def query
+    query = @parameters['query']
+    if query == nil
+      raise Exception.new EMPTY_QUERY_ERROR_MESSAGE
+    end
+    return query
+  end
+
+  def mql_results
+    mql_results = @project.execute_mql(query)
+    if mql_results.empty?
+      raise Exception.new EMPTY_RESULT_ERROR_MESSAGE % query
+    end
+    return mql_results
+  end
+
+  def renaming_param
+    renaming_param = @parameters['rename']
+  end
+
+  def calculation_param
+    calculation_param = @parameters['calculate']
+  end
+
+  def text_color_param
+    text_color_param = @parameters['text_color_enabled']
   end
 
 end

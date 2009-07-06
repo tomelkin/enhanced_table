@@ -14,8 +14,8 @@ class HtmlTableBuilderTest < Test::Unit::TestCase
   def test_should_parse_column_and_row_from_query_results_and_produce_html_table
     html_header = "<header>"
     html_rows = "<rows>"
-    TableHeaderBuilder.expects(:build_html_table_header_from).with(@table.column_names).returns(html_header).once
-    TableRowsBuilder.expects(:build_html_table_rows_from).with(@table.rows).returns(html_rows).once
+    TableHeaderBuilder.expects(:build_html_table_header_from).with(@table).returns(html_header).once
+    TableRowsBuilder.expects(:build_html_table_rows_from).with(@table).returns(html_rows).once
 
     expected_html = "<table>" + html_header + html_rows + "</table>"
 
